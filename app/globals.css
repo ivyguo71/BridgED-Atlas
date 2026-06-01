@@ -2,26 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,900;1,700&family=Archivo+Black&family=Noto+Sans:ital,wght@0,100..900;1,400&family=Noto+Sans+JP:wght@400;600;700;900&family=Noto+Sans+Bengali:wght@400;600;700&family=Noto+Sans+Myanmar:wght@400;600;700&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink:    oklch(0.15 0.03 155);
+  --bg:     oklch(0.97 0.008 90);   /* very warm off-white, like the reference field photo tones */
+  --green:  oklch(0.22 0.09 155);   /* deep forest green for hero */
+  --green2: oklch(0.38 0.12 155);   /* mid green */
+  --terra:  oklch(0.62 0.17 40);    /* terracotta, the reference's orange accent */
+  --muted:  oklch(0.55 0.02 90);
+  --line:   oklch(0.88 0.01 90);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Archivo', 'Noto Sans', 'Noto Sans JP', 'Noto Sans Bengali', 'Noto Sans Myanmar', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.font-display {
+  font-family: 'Archivo Black', 'Noto Sans JP', 'Noto Sans Bengali', 'Noto Sans Myanmar', 'Noto Sans', sans-serif;
+  font-weight: 900;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute; top: -100%; left: 0; z-index: 200;
+  background: var(--green); color: white;
+  padding: 8px 16px; font-size: 14px;
+}
+.skip-link:focus { top: 0; }
+
+/* RTL */
+[lang="fa"] { direction: rtl; }
+
+/* Scrollbar hide */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+.animate-pulse { animation: pulse-dot 2s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse { animation: none; }
 }

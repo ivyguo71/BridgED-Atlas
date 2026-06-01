@@ -9,8 +9,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: '#1A6B4A',
+        accent: '#D85A30',
+      },
+      fontFamily: {
+        sans: ['Noto Sans', 'Noto Sans JP', 'Noto Sans Bengali', 'Noto Sans Myanmar', 'Noto Sans Arabic', 'sans-serif'],
+        mono: ['DM Mono', 'Courier New', 'monospace'],
+      },
+      animation: {
+        bounce: 'bounce 1s infinite',
       },
     },
   },
