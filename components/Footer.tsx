@@ -5,7 +5,7 @@ import { useLanguage } from './LanguageContext';
 export default function Footer() {
   const { t } = useLanguage();
   return (
-    <footer className="bg-[var(--green)] text-white">
+    <footer className="bg-[var(--forest)] text-white border-t border-white/10">
       <div className="max-w-6xl mx-auto px-6 py-14">
         <div className="flex flex-col md:flex-row justify-between gap-10 mb-10">
           <div>

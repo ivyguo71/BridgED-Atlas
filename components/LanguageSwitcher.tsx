@@ -5,20 +5,20 @@ import { useLanguage } from './LanguageContext';
 export default function LanguageSwitcher() {
   const { locale, setLocale } = useLanguage();
   return (
-    <div className="sticky top-0 z-50 bg-[var(--green)] border-b border-white/10">
-      <div className="flex items-center gap-0 px-6 overflow-x-auto scrollbar-hide max-w-none">
-        {LOCALES.map((l, i) => (
+    <div className="sticky top-0 z-50 bg-[var(--forest)] overflow-x-auto scrollbar-hide">
+      <div className="flex items-center max-w-none px-5">
+        {LOCALES.map((l) => (
           <button
             key={l.code}
             onClick={() => setLocale(l.code)}
             aria-label={`Switch to ${l.label}`}
-            className={`shrink-0 px-2.5 py-2 text-[11px] font-semibold transition-colors whitespace-nowrap
+            className={`shrink-0 px-2 py-1.5 text-[10px] font-bold tracking-widest uppercase transition-colors whitespace-nowrap
               ${locale === l.code
-                ? 'text-[oklch(0.62_0.17_40)] border-b-2 border-[oklch(0.62_0.17_40)]'
-                : 'text-white/40 hover:text-white/80'
+                ? 'text-[var(--terra2)]'
+                : 'text-white/30 hover:text-white/60'
               }`}
           >
-            {l.flag} {l.code.toUpperCase()}
+            {l.code}
           </button>
         ))}
       </div>

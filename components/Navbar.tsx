@@ -17,21 +17,18 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-[var(--bg)] border-b border-[var(--line)]">
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-14">
-        <Link href="/" className="font-display text-[var(--green)] text-lg tracking-tight shrink-0" style={{letterSpacing: '-0.02em'}}>
+    <nav className="bg-[var(--cream)] border-b border-[var(--rule)] sticky top-[26px] z-40">
+      <div className="flex items-center justify-between px-6 h-12 max-w-none">
+        <Link href="/" className="font-display text-[var(--forest)] text-sm shrink-0" style={{letterSpacing: '-0.01em'}}>
           BridgED Atlas
         </Link>
-        <div className="flex items-center gap-0 overflow-x-auto scrollbar-hide">
+        <div className="flex items-center overflow-x-auto scrollbar-hide gap-0">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`px-4 py-4 text-sm whitespace-nowrap transition-colors font-medium
-                ${pathname === l.href
-                  ? 'text-[var(--ink)]'
-                  : 'text-[var(--muted)] hover:text-[var(--ink)]'
-                }`}
+              className={`px-3 py-2.5 text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-colors
+                ${pathname === l.href ? 'text-[var(--terra)]' : 'text-[var(--muted)] hover:text-[var(--ink)]'}`}
             >
               {l.label}
             </Link>

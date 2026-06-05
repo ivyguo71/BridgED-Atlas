@@ -22,7 +22,7 @@ export default function ResourceCard({ icon, title, desc, href, badge, tags, pho
   return (
     <Wrapper
       {...(props as any)}
-      className={`group bg-white border border-[var(--border)] rounded-xl p-5 flex flex-col gap-3 transition-all duration-200 ${href ? 'cursor-pointer hover:bg-[var(--primary-light)]' : ''}`}
+      className={`group bg-white border border-[var(--rule)] rounded-xl p-5 flex flex-col gap-3 transition-all duration-200 ${href ? 'cursor-pointer hover:bg-[var(--cream)]' : ''}`}
     >
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 text-xl" style={{ backgroundColor: `${accent}18` }}>
