@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { Locale, TranslationKey, t as translate } from '@/lib/i18n';
 
 interface LanguageContextType {
@@ -16,8 +16,21 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>('en');
+  const [locale, setLocaleState] = useState<Locale>('en');
+
+  // Load saved language on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('bridged-locale') as Locale | null;
+    if (saved) setLocaleState(saved);
+  }, []);
+
+  const setLocale = (l: Locale) => {
+    setLocaleState(l);
+    localStorage.setItem('bridged-locale', l);
+  };
+
   const t = (key: TranslationKey) => translate(locale, key);
+
   return (
     <LanguageContext.Provider value={{ locale, setLocale, t }}>
       {children}
