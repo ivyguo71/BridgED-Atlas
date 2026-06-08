@@ -1,7 +1,9 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Locale, TranslationKey, t as translate } from '@/lib/i18n';
+import { Locale, TranslationKey, t as translate, LOCALES } from '@/lib/i18n';
+
+const VALID_LOCALES = new Set(LOCALES.map(l => l.code));
 
 interface LanguageContextType {
   locale: Locale;
@@ -18,10 +20,15 @@ const LanguageContext = createContext<LanguageContextType>({
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>('en');
 
-  // Load saved language on mount
+  // Load saved language on mount — validate it's still a supported locale
   useEffect(() => {
-    const saved = localStorage.getItem('bridged-locale') as Locale | null;
-    if (saved) setLocaleState(saved);
+    const saved = localStorage.getItem('bridged-locale');
+    if (saved && VALID_LOCALES.has(saved as Locale)) {
+      setLocaleState(saved as Locale);
+    } else if (saved) {
+      // Stale locale (e.g. 'bn' or 'fa' removed in update) — clear it
+      localStorage.removeItem('bridged-locale');
+    }
   }, []);
 
   const setLocale = (l: Locale) => {
